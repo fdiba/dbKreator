@@ -29,13 +29,13 @@
 
 			for ($i=0; $i<sizeof($names); $i++){
 
-				echo "arr.push({name:" . $names[$i] . "});";
+				echo "arr.push({name:\"" . $names[$i] . "\"});";
 				
 			}
 
-
 		?>
 
+		console.log(arr[0].name);
 
 	</script>
 
