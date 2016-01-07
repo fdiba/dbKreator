@@ -17,34 +17,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Display</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <body>
-	<script type="text/javascript">
-
+	<div id="message">
 		<?php
-
-			echo "var arr = [];" . "\n";
 
 
 			for ($i=0; $i<sizeof($names); $i++){
 
-				echo "arr.push({name:\"" . $names[$i] . "\"});";
+				echo '<p>' . $names[$i] . '</p>';
 				
 			}
 
 		?>
-
-		//var foobar = arr[0].name;
-
-		//console.log(foobar + ' in');
-
-	</script>
-	<div id="message">
-		<p>Hello World!</p>
 	</div>
-	<script src="jquery-1.11.3.min.js"></script>
-	<script src="d3.min.js"></script>
-	<script src="script.js"></script>
 </body>
 </html>
