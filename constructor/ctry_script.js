@@ -21,7 +21,7 @@ function doStuff(){
 
 	if(name){
 
-        $.post("update.php", {name: name})
+        $.post("updateTableCountry.php", {name: name})
         .done(function( data ) {
     			console.log( "Data Loaded: " + data );
   			});

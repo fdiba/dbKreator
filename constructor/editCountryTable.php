@@ -9,6 +9,6 @@
 	</div>
 	<script src="jquery-1.11.3.min.js"></script>
 	<script src="d3.min.js"></script>
-	<script src="script.js"></script>
+	<script src="ctry_script.js"></script>
 </body>
 </html>
