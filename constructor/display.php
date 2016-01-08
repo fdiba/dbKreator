@@ -27,7 +27,7 @@
 
 			for ($i=0; $i<sizeof($names); $i++){
 
-				echo '<p>' . $names[$i] . '</p>';
+				echo '<p>' . $names[$i] . '</p>' . "\n";
 				
 			}
 
