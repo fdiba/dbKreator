@@ -2,15 +2,11 @@ d3.selectAll('.info').each(function(d, i){
 
 	var div = d3.select(this);
 
-	var mWidth = div.attr("data-color");
-
-	// var color = Math.random()*255;
-	var color = Math.random()*255;
+	var mWidth = div.attr("data-width");
+	var color = div.attr("data-color");
 
 
-	// console.log(div.attr("data-color"));
-
-	div.text('').style({width: mWidth+'px', height: '10px', overflow: 'hidden'});
+	div.text('').style({width: mWidth+'px', height: '24px', overflow: 'hidden'});
 
 	div.style("background",function() {
     	return d3.rgb(color, color, color);

@@ -35,17 +35,36 @@
 	<div id="message">
 		<?php
 
+			function getColor($str){
+
+				$value = 0;
+				$arr1 = str_split($str);
+				
+				for ($i=0; $i<sizeof($arr1); $i++){
+					$value += ord($arr1[$i]);
+				}
+				
+				return $value%255;
+			}
+
 
 			for ($i=0; $i<sizeof($names); $i++){
 
-				// echo $firstNames[$i] . " " .
-				// 	 $names[$i] . " " .
-				// 	 // $ctryNames[$i] . "<br />";
-				// 	 $ctryNames[$i] . " ";
+				$color1 = getColor($firstNames[$i]);
+				$color2 = getColor($names[$i]);
+				$color3 = getColor($ctryNames[$i]);
 
-				echo '<div data-color="' . strlen($firstNames[$i]) . '" class="info">'.$firstNames[$i].'</div>'.
-					 '<div data-color="' . strlen($names[$i]) . '" class="info">'.$names[$i].'</div>'.
-					 '<div data-color="' . strlen($ctryNames[$i]) . '" class="info">'.$ctryNames[$i].'</div>';
+				echo '<div data-color="' . $color1 .
+						'" data-width="' . strlen($firstNames[$i]) .
+						'" class="info">'.$firstNames[$i].'</div>'.
+
+					 '<div data-color="' . $color2 .
+					 	'" data-width="' . strlen($names[$i]) . 
+					 	'" class="info">'.$names[$i].'</div>'.
+
+					 '<div data-color="' . $color3 .
+					 	'" data-width="' . strlen($ctryNames[$i]) . 
+					 	'" class="info">'.$ctryNames[$i].'</div>';
 				
 			}
 
