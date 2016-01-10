@@ -9,7 +9,8 @@ d3.selectAll('.info').each(function(d, i){
 	div.text('').style({width: mWidth+'px', height: '24px', overflow: 'hidden'});
 
 	div.style("background",function() {
-    	return d3.rgb(color, color, color);
+    	// return d3.rgb(color, color, color);
+    	return color;
     })
 
     div.transition().delay(100*i).style("visibility", "visible");

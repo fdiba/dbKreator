@@ -38,6 +38,7 @@
 			function getColor($str){
 
 				$value = 0;
+
 				$arr1 = str_split($str);
 				
 				for ($i=0; $i<sizeof($arr1); $i++){
@@ -47,6 +48,15 @@
 				return $value%255;
 			}
 
+			function RGBToHex($r, $g, $b) {
+
+				$hex = "#";
+				$hex.= str_pad(dechex($r), 2, "0", STR_PAD_LEFT);
+				$hex.= str_pad(dechex($g), 2, "0", STR_PAD_LEFT);
+				$hex.= str_pad(dechex($b), 2, "0", STR_PAD_LEFT);
+		 
+				return $hex;
+			}
 
 			for ($i=0; $i<sizeof($names); $i++){
 
@@ -54,15 +64,17 @@
 				$color2 = getColor($names[$i]);
 				$color3 = getColor($ctryNames[$i]);
 
-				echo '<div data-color="' . $color1 .
+				$hexColor = RGBToHex($color1, $color2, $color3);
+
+				echo '<div data-color="' . $hexColor .
 						'" data-width="' . strlen($firstNames[$i]) .
 						'" class="info">'.$firstNames[$i].'</div>'.
 
-					 '<div data-color="' . $color2 .
+					 '<div data-color="' . $hexColor .
 					 	'" data-width="' . strlen($names[$i]) . 
 					 	'" class="info">'.$names[$i].'</div>'.
 
-					 '<div data-color="' . $color3 .
+					 '<div data-color="' . $hexColor .
 					 	'" data-width="' . strlen($ctryNames[$i]) . 
 					 	'" class="info">'.$ctryNames[$i].'</div>';
 				
