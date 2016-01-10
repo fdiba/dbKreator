@@ -67,14 +67,17 @@
 				$hexColor = RGBToHex($color1, $color2, $color3);
 
 				echo '<div data-color="' . $hexColor .
+						'" data-str="' . $firstNames[$i] .
 						'" data-width="' . strlen($firstNames[$i]) .
 						'" class="info">'.$firstNames[$i].'</div>'.
 
 					 '<div data-color="' . $hexColor .
+					 	'" data-str="' . $names[$i] .
 					 	'" data-width="' . strlen($names[$i]) . 
 					 	'" class="info">'.$names[$i].'</div>'.
 
 					 '<div data-color="' . $hexColor .
+					 	'" data-str="' . $ctryNames[$i] .
 					 	'" data-width="' . strlen($ctryNames[$i]) . 
 					 	'" class="info">'.$ctryNames[$i].'</div>';
 				
@@ -82,6 +85,7 @@
 
 		?>
 	</div>
+	<script src="jquery-1.11.3.min.js"></script>
 	<script src="d3.min.js"></script>
 	<script src="js/abstract_script.js"></script>
 </body>
