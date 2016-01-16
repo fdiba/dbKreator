@@ -1,24 +1,32 @@
 <?php require("access/connexion.php"); ?>
 <?php
 
-	$firstNames = array();
-	$names = array();
-	$ctryNames = array();
+	$objects = array();
 
-	// $sth = $dbh->query('SELECT name from country');
-
-	$sth = $dbh->query('SELECT artist.firstName, artist.name, country.c_name
+	$sth = $dbh->query('SELECT artist.firstName, artist.name,
+							   country.c_name,
+							   edition.ed_1973, edition.ed_1974
 						FROM artist
 						INNER JOIN country
 						ON artist.id_country = country.id
+						INNER JOIN edition
+						ON artist.id = edition.artist_id
 						');
 
 	$sth->setFetchMode(PDO::FETCH_ASSOC);
 
 	while($row = $sth->fetch()) {
-		array_push($firstNames, $row['firstName']);
-		array_push($names, $row['name']);
-		array_push($ctryNames, $row['c_name']);
+
+		array_push($objects, array($row['firstName'], $row['name'],
+								   $row['c_name'], ''));
+
+		//set up years
+		if ($row['ed_1973']) $objects[sizeof($objects)-1][3] = '1973';
+		if ($row['ed_1974']) {
+			if($objects[sizeof($objects)-1][3]) $objects[sizeof($objects)-1][3] .= ', 1974';
+			else $objects[sizeof($objects)-1][3] .= '1974';	
+		}
+
 	}
 
 	$dbh=null;
@@ -35,13 +43,16 @@
 	<div id="message">
 		<?php
 
+			for ($i=0; $i<sizeof($objects); $i++){
 
-			for ($i=0; $i<sizeof($names); $i++){
+				$str = '';
 
-				echo $firstNames[$i] . " " .
-					 $names[$i] . " " .
-					 // $ctryNames[$i] . "<br />";
-					 $ctryNames[$i] . " ";
+				if($objects[$i][0]) $str = $objects[$i][0] . ' '; //firstName
+				if($objects[$i][1]) $str = $str . $objects[$i][1] . ' '; //name
+				if($objects[$i][2]) $str = $str . $objects[$i][2] . ' '; //country
+
+				$str = $str . $objects[$i][3] . ' '; //years
+				echo $str;
 				
 			}
 
