@@ -1,24 +1,31 @@
 <?php require("access/connexion.php"); ?>
 <?php
 
-	$firstNames = array();
-	$names = array();
-	$ctryNames = array();
+	$objects = array();
 
-	// $sth = $dbh->query('SELECT name from country');
 
-	$sth = $dbh->query('SELECT artist.firstName, artist.name, country.c_name
+	$sth = $dbh->query('SELECT artist.firstName, artist.name,
+							   country.c_name,
+							   edition.ed_1973, edition.ed_1974
 						FROM artist
 						INNER JOIN country
 						ON artist.id_country = country.id
+						INNER JOIN edition
+						ON artist.id = edition.artist_id
 						');
 
 	$sth->setFetchMode(PDO::FETCH_ASSOC);
 
 	while($row = $sth->fetch()) {
-		array_push($firstNames, $row['firstName']);
-		array_push($names, $row['name']);
-		array_push($ctryNames, $row['c_name']);
+
+		array_push($objects, array($row['firstName'], $row['name'],
+								   $row['c_name'], array()));
+
+		//set up years
+		if ($row['ed_1973']) array_push($objects[sizeof($objects)-1][3], '1973');
+		if ($row['ed_1974']) array_push($objects[sizeof($objects)-1][3], '1974');
+
+
 	}
 
 	$dbh=null;
@@ -58,31 +65,50 @@
 				return $hex;
 			}
 
-			for ($i=0; $i<sizeof($names); $i++){
+			for ($i=0; $i<sizeof($objects); $i++){
 
-				$color1 = getColor($firstNames[$i]);
-				$color2 = getColor($names[$i]);
-				$color3 = getColor($ctryNames[$i]);
+				$firstName = $objects[$i][0];
+				$name = $objects[$i][1];
+				$country = $objects[$i][2];
+
+				$color1 = getColor($firstName);
+				$color2 = getColor($name);
+				$color3 = getColor($country);
 
 				$hexColor = RGBToHex($color1, $color2, $color3);
 
 				echo '<div data-color="' . $hexColor .
-						'" data-str="' . $firstNames[$i] .
-						'" data-width="' . strlen($firstNames[$i]) .
-						'" class="info">'.$firstNames[$i].'</div>'.
+						'" data-str="' . $firstName .
+						'" data-width="' . strlen($firstName) .
+						'" class="info">'.$firstName.'</div>'.
 
 					 '<div data-color="' . $hexColor .
-					 	'" data-str="' . $names[$i] .
-					 	'" data-width="' . strlen($names[$i]) . 
-					 	'" class="info">'.$names[$i].'</div>'.
+					 	'" data-str="' . $name .
+					 	'" data-width="' . strlen($name) . 
+					 	'" class="info">'.$name.'</div>'.
 
 					 '<div data-color="' . $hexColor .
-					 	'" data-str="' . $ctryNames[$i] .
-					 	'" data-width="' . strlen($ctryNames[$i]) . 
-					 	'" class="info">'.$ctryNames[$i].'</div>';
-				
+					 	'" data-str="' . $country .
+					 	'" data-width="' . strlen($country) . 
+					 	'" class="info">'.$country.'</div>';
+
+				//-------- years ---------//
+				$years = $objects[$i][3];
+
+				for ($j=0; $j<sizeof($years); $j++){
+
+					$year = $years[$j];
+					$rgbValue = getColor($year);
+					$color = RGBToHex($rgbValue, $rgbValue, $rgbValue);
+
+
+					echo '<div data-color="' . $color .
+						'" data-str="' . $year .
+						'" data-width="' . strlen($year) .
+						'" class="info">'.$year.'</div>';
+
+				}				
 			}
-
 		?>
 	</div>
 	<script src="jquery-1.11.3.min.js"></script>

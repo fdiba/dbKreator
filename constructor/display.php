@@ -18,14 +18,11 @@
 	while($row = $sth->fetch()) {
 
 		array_push($objects, array($row['firstName'], $row['name'],
-								   $row['c_name'], ''));
+								   $row['c_name'], array()));
 
 		//set up years
-		if ($row['ed_1973']) $objects[sizeof($objects)-1][3] = '1973';
-		if ($row['ed_1974']) {
-			if($objects[sizeof($objects)-1][3]) $objects[sizeof($objects)-1][3] .= ', 1974';
-			else $objects[sizeof($objects)-1][3] .= '1974';	
-		}
+		if ($row['ed_1973']) array_push($objects[sizeof($objects)-1][3], '1973');
+		if ($row['ed_1974']) array_push($objects[sizeof($objects)-1][3], '1974');
 
 	}
 
@@ -51,7 +48,17 @@
 				if($objects[$i][1]) $str = $str . $objects[$i][1] . ' '; //name
 				if($objects[$i][2]) $str = $str . $objects[$i][2] . ' '; //country
 
-				$str = $str . $objects[$i][3] . ' '; //years
+
+				//-------- years ---------//
+				$years = $objects[$i][3];
+
+				for ($j=0; $j<sizeof($years); $j++){
+					$str = $str . $years[$j];
+
+					if($j<sizeof($years)-1) $str = $str . ', ';
+					else $str = $str . ' ';
+				}
+
 				echo $str;
 				
 			}
