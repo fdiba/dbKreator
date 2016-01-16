@@ -1,8 +1,10 @@
+var year ='1974';
+var path = 'data/'+year+'.csv';
 var objects = [];
 var pointer;
 var myVar;
 
-d3.csv('data/1973.csv', function(data){
+d3.csv(path, function(data){
 
 	for(key in data){
 
@@ -27,12 +29,19 @@ function doStuff(){
 
         $.post("updateArtistsTable.php", {firstName : firstName, name : name, country : country})
         .done(function( data ) {
-    			console.log( "Data Loaded: " + data );
+    			// console.log( "Data Loaded: " + data );
+    			d3.select('#message').append('div')
+    				.classed('feedback', true)
+    				.text(data);
+
   			});
 
 
 	} else {
 		console.log('---------------- empty ----------------');
+		d3.select('#message').append('div')
+					.classed('error', true)
+    				.text('---------------- no name ----------------');
 
 	}
 
@@ -42,7 +51,7 @@ function doStuff(){
 }
 function editDatabase(){
 
-	var delay=1000;
+	var delay=500;
 	pointer = 0;
 
 	myVar = setInterval(doStuff, delay);

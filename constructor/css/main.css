@@ -8,6 +8,12 @@ body{
 	width: 100%;
 	height: 100%;
 }
+.feedback{
+	background: green;
+}
+.error{
+	background: red;
+}
 .info{
 	float: left;
 	background: yellow;

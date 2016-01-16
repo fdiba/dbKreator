@@ -12,7 +12,7 @@ $country = $_POST['country'];
 $arr = array();
 
 $sth = $dbh->query("SELECT * from country
-					WHERE name ='" . $country . "' LIMIT 1");
+					WHERE c_name ='" . $country . "' LIMIT 1");
 
 $sth->setFetchMode(PDO::FETCH_ASSOC);
 
@@ -31,24 +31,12 @@ $dbh->exec("INSERT INTO artist (firstName, name, id_country)
 			WHERE NOT EXISTS (
 				SELECT name FROM artist WHERE firstName ='" . $firstName ."'
 				AND name = '" . $name . "') LIMIT 1;")
-			// or die(print_r($dbh->errorInfo(), true));
+
 			or die(print_r($dbh->errorInfo() . "\n" .
-				$firstName . " " . $name . ' ---------------', true));
-
-/*INSERT INTO table_listnames (name, address, tele)
-SELECT * FROM (SELECT 'Rupert', 'Somewhere', '022') AS tmp
-WHERE NOT EXISTS (
-    SELECT name FROM table_listnames WHERE name = 'Rupert'
-) LIMIT 1;*/
-
-//$dbh->exec("DELETE FROM country WHERE name = 'rouge'")
+				$firstName . " " . $name . ' ===============> already in', true));
 
 echo $name;
 
 $dbh=null;
-
-
-
-// echo $arr[0] . " " . $name;
 
 ?>
