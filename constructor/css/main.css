@@ -13,10 +13,10 @@ body{
 	font-size: .9em;
 }
 .feedback{
-	background: green;
+	background: #B7E1CD;
 }
 .error{
-	background: red;
+	background: #F4C7C3;
 }
 .info{
 	float: left;

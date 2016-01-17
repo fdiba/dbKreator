@@ -8,7 +8,8 @@
 							   country.c_name,
 							   edition.ed_1973, edition.ed_1974,
 							   edition.ed_1975, edition.ed_1976,
-							   edition.ed_1977, edition.ed_1978
+							   edition.ed_1977, edition.ed_1978,
+							   edition.ed_1979, edition.ed_1980
 
 						FROM artist
 						INNER JOIN country
@@ -30,6 +31,9 @@
 		if ($row['ed_1975']) array_push($objects[sizeof($objects)-1][3], '1975');
 		if ($row['ed_1976']) array_push($objects[sizeof($objects)-1][3], '1976');
 		if ($row['ed_1977']) array_push($objects[sizeof($objects)-1][3], '1977');
+		if ($row['ed_1978']) array_push($objects[sizeof($objects)-1][3], '1978');
+		if ($row['ed_1979']) array_push($objects[sizeof($objects)-1][3], '1979');
+		if ($row['ed_1980']) array_push($objects[sizeof($objects)-1][3], '1980');
 
 
 	}
