@@ -6,7 +6,10 @@
 
 	$sth = $dbh->query('SELECT artist.firstName, artist.name,
 							   country.c_name,
-							   edition.ed_1973, edition.ed_1974
+							   edition.ed_1973, edition.ed_1974,
+							   edition.ed_1975, edition.ed_1976,
+							   edition.ed_1977, edition.ed_1978
+
 						FROM artist
 						INNER JOIN country
 						ON artist.id_country = country.id
@@ -24,6 +27,9 @@
 		//set up years
 		if ($row['ed_1973']) array_push($objects[sizeof($objects)-1][3], '1973');
 		if ($row['ed_1974']) array_push($objects[sizeof($objects)-1][3], '1974');
+		if ($row['ed_1975']) array_push($objects[sizeof($objects)-1][3], '1975');
+		if ($row['ed_1976']) array_push($objects[sizeof($objects)-1][3], '1976');
+		if ($row['ed_1977']) array_push($objects[sizeof($objects)-1][3], '1977');
 
 
 	}
@@ -45,7 +51,6 @@
 			function getColor($str){
 
 				$value = 0;
-
 				$arr1 = str_split($str);
 				
 				for ($i=0; $i<sizeof($arr1); $i++){
@@ -56,12 +61,10 @@
 			}
 
 			function RGBToHex($r, $g, $b) {
-
 				$hex = "#";
 				$hex.= str_pad(dechex($r), 2, "0", STR_PAD_LEFT);
 				$hex.= str_pad(dechex($g), 2, "0", STR_PAD_LEFT);
 				$hex.= str_pad(dechex($b), 2, "0", STR_PAD_LEFT);
-		 
 				return $hex;
 			}
 
@@ -76,6 +79,7 @@
 				$color3 = getColor($country);
 
 				$hexColor = RGBToHex($color1, $color2, $color3);
+				// $ctryColor = RGBToHex($color3, $color3, $color3);
 
 				echo '<div data-color="' . $hexColor .
 						'" data-str="' . $firstName .
