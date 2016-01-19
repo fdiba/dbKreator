@@ -15,7 +15,7 @@ d3.selectAll('.info').each(function(d, i){
     	return color;
     })
 
-    div.transition().delay(100*i).style("visibility", "visible");
+    div.transition().delay(10*i).style("visibility", "visible");
 
     var tooltip = d3.select('#tooltip');
 
