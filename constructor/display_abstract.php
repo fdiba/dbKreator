@@ -1,15 +1,21 @@
 <?php require("access/connexion.php"); ?>
+<?php require("functions.php"); ?>
 <?php
 
 	$objects = array();
-
+	$years = getYears();
 
 	$sth = $dbh->query('SELECT artist.firstName, artist.name,
 							   country.c_name,
 							   edition.ed_1973, edition.ed_1974,
 							   edition.ed_1975, edition.ed_1976,
 							   edition.ed_1977, edition.ed_1978,
-							   edition.ed_1979, edition.ed_1980
+							   edition.ed_1979, edition.ed_1980,
+							   edition.ed_1981, edition.ed_1982,
+							   edition.ed_1983, edition.ed_1984,
+							   edition.ed_1985, edition.ed_1986,
+							   edition.ed_1987, edition.ed_1988,
+							   edition.ed_1989, edition.ed_1990
 
 						FROM artist
 						INNER JOIN country
@@ -25,15 +31,11 @@
 		array_push($objects, array($row['firstName'], $row['name'],
 								   $row['c_name'], array()));
 
-		//set up years
-		if ($row['ed_1973']) array_push($objects[sizeof($objects)-1][3], '1973');
-		if ($row['ed_1974']) array_push($objects[sizeof($objects)-1][3], '1974');
-		if ($row['ed_1975']) array_push($objects[sizeof($objects)-1][3], '1975');
-		if ($row['ed_1976']) array_push($objects[sizeof($objects)-1][3], '1976');
-		if ($row['ed_1977']) array_push($objects[sizeof($objects)-1][3], '1977');
-		if ($row['ed_1978']) array_push($objects[sizeof($objects)-1][3], '1978');
-		if ($row['ed_1979']) array_push($objects[sizeof($objects)-1][3], '1979');
-		if ($row['ed_1980']) array_push($objects[sizeof($objects)-1][3], '1980');
+		
+		for($i = 0; $i <sizeof($years); $i++){
+			$column_name = 'ed_' . $years[$i];
+			if ($row[$column_name]) array_push($objects[sizeof($objects)-1][3], $years[$i]);
+		}
 
 
 	}
@@ -51,26 +53,6 @@
 <body>
 	<div id="message">
 		<?php
-
-			function getColor($str){
-
-				$value = 0;
-				$arr1 = str_split($str);
-				
-				for ($i=0; $i<sizeof($arr1); $i++){
-					$value += ord($arr1[$i]);
-				}
-				
-				return $value%255;
-			}
-
-			function RGBToHex($r, $g, $b) {
-				$hex = "#";
-				$hex.= str_pad(dechex($r), 2, "0", STR_PAD_LEFT);
-				$hex.= str_pad(dechex($g), 2, "0", STR_PAD_LEFT);
-				$hex.= str_pad(dechex($b), 2, "0", STR_PAD_LEFT);
-				return $hex;
-			}
 
 			for ($i=0; $i<sizeof($objects); $i++){
 
