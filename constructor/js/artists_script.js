@@ -1,4 +1,4 @@
-var year ='1982';
+var year ='1984';
 var path = 'data/'+year+'.csv';
 var objects = [];
 var pointer;
@@ -51,7 +51,7 @@ function doStuff(){
 }
 function editDatabase(){
 
-	var delay=250;
+	var delay=50;
 	pointer = 0;
 
 	myVar = setInterval(doStuff, delay);
