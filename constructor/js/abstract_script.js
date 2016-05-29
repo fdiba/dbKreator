@@ -17,7 +17,7 @@ d3.selectAll('.info').each(function(d, i){
 
     div.transition().delay(10*i).style("visibility", "visible");
 
-    var tooltip = d3.select('#tooltip');
+    /*var tooltip = d3.select('#tooltip');
 
     $(this).mouseover(function() {
 		tooltip.text(str);
@@ -27,7 +27,7 @@ d3.selectAll('.info').each(function(d, i){
 			   .style('left', (event.pageX + 10) + 'px');
 	}).mouseout(function() {
     	tooltip.style('display', 'none');
-  	});
+  	});*/
 
 });
 

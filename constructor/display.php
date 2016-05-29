@@ -15,7 +15,17 @@
 							   edition.ed_1983, edition.ed_1984,
 							   edition.ed_1985, edition.ed_1986,
 							   edition.ed_1987, edition.ed_1988,
-							   edition.ed_1989, edition.ed_1990
+							   edition.ed_1989, edition.ed_1990,
+							   edition.ed_1991, edition.ed_1992,
+							   edition.ed_1993, edition.ed_1994,
+							   edition.ed_1995, edition.ed_1996,
+							   edition.ed_1997, edition.ed_1998,
+							   edition.ed_1999, edition.ed_2000,
+							   edition.ed_2001, edition.ed_2002,
+							   edition.ed_2003, edition.ed_2004,
+							   edition.ed_2005, edition.ed_2006,
+							   edition.ed_2007, edition.ed_2008,
+							   edition.ed_2009
 
 						FROM artist
 						INNER JOIN country
