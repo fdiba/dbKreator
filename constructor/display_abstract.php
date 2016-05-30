@@ -70,11 +70,12 @@
 				$name = $objects[$i][1];
 				$country = $objects[$i][2];
 
-				$color1 = getColor($firstName);
-				$color2 = getColor($name);
-				$color3 = getColor($country);
+				//$color1 = getColor($firstName);
+				//$color2 = getColor($name);
+				//$color3 = getColor($country);
 
-				$hexColor = RGBToHex($color1, $color2, $color3);
+				//$hexColor = RGBToHex($color1, $color2, $color3);
+				$hexColor = RGBToHex(225, 225, 225);
 				// $ctryColor = RGBToHex($color3, $color3, $color3);
 
 				echo '<div data-color="' . $hexColor .
@@ -105,7 +106,7 @@
 					echo '<div data-color="' . $color .
 						'" data-str="' . $year .
 						'" data-width="' . strlen($year) .
-						'" class="info">'.$year.'</div>';
+						'" class="edition">'.$year.'</div>';
 
 				}				
 			}

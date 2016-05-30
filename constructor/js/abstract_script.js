@@ -1,6 +1,6 @@
 addTooltip();
 
-d3.selectAll('.info').each(function(d, i){
+d3.selectAll('.edition').each(function(){
 
 	var div = d3.select(this);
 
@@ -11,24 +11,53 @@ d3.selectAll('.info').each(function(d, i){
 	div.text('').style({width: mWidth+'px', height: '24px', overflow: 'hidden'});
 
 	div.style("background",function() {
-    	// return d3.rgb(color, color, color);
+
+		var foo = 255/(2009-1973);
+		var id = str - 1973;
+		id *= foo;
+    	return d3.hsl(id, .5, .5);
+    })
+
+    //div.transition().delay(10*i).style("visibility", "visible");
+    /*
+    var tooltip = d3.select('#tooltip');
+
+    $(this).click(function(event) {
+		tooltip.text(str)
+				.style({'display': 'block',
+						'top': (event.pageY + 10) + 'px',
+			   			'left': (event.pageX + 10) + 'px'});
+	}).mousemove(function(event) {
+		tooltip.style('display', 'none');
+	});*/
+});
+
+d3.selectAll('.info').each(function(){
+
+	var div = d3.select(this);
+
+	var mWidth = div.attr("data-width");
+	var color = div.attr("data-color");
+	var str = div.attr("data-str");
+
+	div.text('').style({width: mWidth+'px', height: '24px', overflow: 'hidden'});
+
+	div.style("background",function() {
     	return color;
     })
 
-    div.transition().delay(10*i).style("visibility", "visible");
+    //div.transition().delay(10*i).style("visibility", "visible");
 
-    /*var tooltip = d3.select('#tooltip');
+    var tooltip = d3.select('#tooltip');
 
-    $(this).mouseover(function() {
-		tooltip.text(str);
-		tooltip.style('display', 'block');
+    $(this).click(function(event) {
+		tooltip.text(str)
+				.style({'display': 'block',
+						'top': (event.pageY + 10) + 'px',
+			   			'left': (event.pageX + 10) + 'px'});
 	}).mousemove(function(event) {
-		tooltip.style('top', (event.pageY + 10) + 'px')
-			   .style('left', (event.pageX + 10) + 'px');
-	}).mouseout(function() {
-    	tooltip.style('display', 'none');
-  	});*/
-
+		tooltip.style('display', 'none');
+	});
 });
 
 function addTooltip(){

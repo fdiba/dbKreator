@@ -18,13 +18,13 @@ body{
 .error{
 	background: #F4C7C3;
 }
-.info{
+.info, .edition{
 	float: left;
 	background: yellow;
 	padding: 0;
 	margin: 1px 1px 4px 1px;
 	border-radius: 3px;
-	visibility: hidden;
+	/*visibility: hidden;*/
 }
 #tooltip {
 	background: #eee;
