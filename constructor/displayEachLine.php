@@ -5,8 +5,8 @@
 	$objects = array();
 	$years = getYears();
 
-	$sth = $dbh->query('SELECT artist.firstName, artist.name,
-							   country.c_name,
+	$sth = $dbh->query('SELECT artist.id, artist.firstName,
+							   artist.name, country.c_name,
 							   edition.ed_1973, edition.ed_1974,
 							   edition.ed_1975, edition.ed_1976,
 							   edition.ed_1977, edition.ed_1978,
@@ -38,12 +38,12 @@
 
 	while($row = $sth->fetch()) {
 
-		array_push($objects, array($row['firstName'], $row['name'],
+		array_push($objects, array($row['id'], $row['firstName'], $row['name'],
 								   $row['c_name'], array()));
 
 		for($i = 0; $i <sizeof($years); $i++){
 			$column_name = 'ed_' . $years[$i];
-			if ($row[$column_name]) array_push($objects[sizeof($objects)-1][3], $years[$i]);
+			if ($row[$column_name]) array_push($objects[sizeof($objects)-1][4], $years[$i]);
 		}
 		
 	}
@@ -64,15 +64,14 @@
 
 			for ($i=0; $i<sizeof($objects); $i++){
 
-				$str = '';
-
-				if($objects[$i][0]) $str = $objects[$i][0] . ' '; //firstName
-				if($objects[$i][1]) $str = $str . $objects[$i][1] . ' '; //name
-				if($objects[$i][2]) $str = $str . $objects[$i][2] . ' '; //country
+				$str = $objects[$i][0] . ' '; //id
+				if($objects[$i][1]) $str = $str . $objects[$i][1] . ' '; //firstName
+				if($objects[$i][2]) $str = $str . $objects[$i][2] . ' '; //name
+				if($objects[$i][3]) $str = $str . $objects[$i][3] . ' '; //country
 
 
 				//-------- years ---------//
-				$years = $objects[$i][3];
+				$years = $objects[$i][4];
 
 				for ($j=0; $j<sizeof($years); $j++){
 					$str = $str . $years[$j];

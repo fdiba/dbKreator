@@ -4,12 +4,12 @@
 
 	$objects = array();
 
-	$sth = $dbh->query('SELECT c_name FROM country');
+	$sth = $dbh->query('SELECT id, c_name FROM country');
 
 	$sth->setFetchMode(PDO::FETCH_ASSOC);
 
 	while($row = $sth->fetch()) {
-		array_push($objects, array($row['c_name']));
+		array_push($objects, array($row['id'], $row['c_name']));
 	}
 
 	$dbh=null;
@@ -28,9 +28,7 @@
 
 			for ($i=0; $i<sizeof($objects); $i++){
 
-				$str = '';
-
-				if($objects[$i][0]) $str = $objects[$i][0] . ' '; //c_name
+				$str = $objects[$i][0] . ' ' . $objects[$i][1];
 
 				echo "<div>" . $str . "</div>";
 				
