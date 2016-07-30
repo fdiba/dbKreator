@@ -31,12 +31,10 @@ $dbh->exec("INSERT INTO edition (artist_id, " .$ed_year. ")
 			ON DUPLICATE KEY UPDATE
 			artist_id= '" . $id_artist . "', " .$ed_year. "=1")
 
-	or die(print_r($dbh->errorInfo() . "\n" .
-		$id_artist . " ".
-		$firstName . " " .
-		$name . ' <--------------- check it', true));
+	or die(print_r($dbh->errorInfo()[2] . "\n" .
+		"already in =====> " . $id_artist . " " . $firstName . " " . $name, true));
 
-echo $id_artist;
+echo $id_artist . " " . $firstName . " " . $name;
 
 $dbh=null;
 

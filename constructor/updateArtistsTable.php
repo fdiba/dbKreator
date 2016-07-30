@@ -32,10 +32,10 @@ $dbh->exec("INSERT INTO artist (firstName, name, id_country)
 				SELECT name FROM artist WHERE firstName ='" . $firstName ."'
 				AND name = '" . $name . "') LIMIT 1;")
 
-			or die(print_r($dbh->errorInfo() . "\n" .
-				$firstName . " " . $name . ' ===============> already in', true));
+			or die(print_r($dbh->errorInfo()[2] . "\n" . 
+				"already in =====> " . $firstName . " " . $name, true));
 
-echo $name;
+echo $firstName . " " . $name;
 
 $dbh=null;
 

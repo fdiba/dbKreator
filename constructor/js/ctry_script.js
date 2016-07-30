@@ -43,7 +43,7 @@ function doStuff(){
 }
 function editDatabase(){
 
-	var delay=50;
+	var delay=25;
 	pointer = 0;
 
 	myVar = setInterval(doStuff, delay);
