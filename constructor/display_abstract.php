@@ -75,18 +75,16 @@
 				//$color3 = getColor($country);
 
 				//$hexColor = RGBToHex($color1, $color2, $color3);
-				$hexColor = RGBToHex(225, 225, 225);
+				$hexColor = RGBToHex(225, 225, 225); //grey
 				// $ctryColor = RGBToHex($color3, $color3, $color3);
 
-				echo '<div data-color="' . $hexColor .
-						'" data-str="' . $firstName .
-						'" data-width="' . strlen($firstName) .
-						'" class="info">'.$firstName.'</div>'.
+				$length = strlen($firstName)  + strlen($name); 
+				$str = $firstName . ' ' . $name . ' ' . implode("\n", $objects[$i][3]);;
 
-					 '<div data-color="' . $hexColor .
-					 	'" data-str="' . $name .
-					 	'" data-width="' . strlen($name) . 
-					 	'" class="info">'.$name.'</div>'.
+				echo '<div data-color="' . $hexColor .
+						'" data-str="' . $str .
+						'" data-width="' . $length .
+						'" class="info">' . $str .'</div>'.
 
 					 '<div data-color="' . $hexColor .
 					 	'" data-str="' . $country .
