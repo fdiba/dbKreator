@@ -1,4 +1,4 @@
-var year ='1993';
+var year ='1975';
 var path = 'data/'+year+'.csv';
 var objects = [];
 var pointer;
@@ -9,8 +9,13 @@ d3.csv(path, function(data){
 	for(key in data){
 
 		var firstName = data[key].firstName;
+		firstName = firstName.trim();
+
 		var name = data[key].name;
+		name = name.trim();
+
 		var country = data[key].country;
+		country = country.trim();
 
 		objects.push({firstName : firstName, name : name, country : country});
 	
