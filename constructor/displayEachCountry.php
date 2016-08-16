@@ -26,12 +26,15 @@
 	<div id="message">
 		<?php
 
+			$count=0;
+
 			for ($i=0; $i<sizeof($objects); $i++){
 
-				$str = $objects[$i][0] . ' ' . $objects[$i][1];
+				$str = $objects[$i][1] . ' ' . $objects[$i][0];
 
-				echo "<div>" . $str . "</div>";
+				echo "<div>" . $count . ' ' . $str . "</div>";
 				
+				$count++;
 			}
 
 		?>
