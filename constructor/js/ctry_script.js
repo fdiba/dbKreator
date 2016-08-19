@@ -1,4 +1,4 @@
-var year ='1975';
+var year ='1994';
 var path = 'data/'+year+'.csv';
 var objects = [];
 var pointer;
@@ -21,7 +21,7 @@ function doStuff(){
 
 	if(name){
 
-        $.post("updateTableCountry.php", {name: name})
+        $.post("updateCountryTable.php", {name: name})
         .done(function( data ) {
     			// console.log( "Data Loaded: " + data );
     			d3.select('#message').append('div')

@@ -1,4 +1,4 @@
-var year ='1975';
+var year ='1994';
 var path = 'data/'+year+'.csv';
 var objects = [];
 var pointer;

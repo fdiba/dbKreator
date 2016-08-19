@@ -1,5 +1,3 @@
-addTooltip();
-
 d3.selectAll('.edition').each(function(){
 
 	var div = d3.select(this);
@@ -18,18 +16,6 @@ d3.selectAll('.edition').each(function(){
     	return d3.hsl(id, .5, .5);
     })
 
-    //div.transition().delay(10*i).style("visibility", "visible");
-    /*
-    var tooltip = d3.select('#tooltip');
-
-    $(this).click(function(event) {
-		tooltip.text(str)
-				.style({'display': 'block',
-						'top': (event.pageY + 10) + 'px',
-			   			'left': (event.pageX + 10) + 'px'});
-	}).mousemove(function(event) {
-		tooltip.style('display', 'none');
-	});*/
 });
 
 d3.selectAll('.info').each(function(){
@@ -46,24 +32,10 @@ d3.selectAll('.info').each(function(){
     	return color;
     })
 
-    //div.transition().delay(10*i).style("visibility", "visible");
-
-    var tooltip = d3.select('#tooltip');
+    var tooltip = d3.select('#info_bar p');
 
     $(this).click(function(event) {
-		tooltip.text(str)
-				.style({'display': 'block',
-						'top': (event.pageY + 10) + 'px',
-			   			'left': (event.pageX + 10) + 'px'});
-	}).mousemove(function(event) {
-		tooltip.style('display', 'none');
+		tooltip.text(str);
+		//TODO DO DATABASE REQUEST TO GET MISAM
 	});
 });
-
-function addTooltip(){
-
-	var tooltip = d3.select('#message')
-		.append('div')
-		.attr('id', 'tooltip');
-
-}

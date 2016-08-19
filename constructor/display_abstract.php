@@ -48,6 +48,7 @@
 		}
 
 
+
 	}
 
 	$dbh=null;
@@ -59,11 +60,14 @@
 	<title>Abstract Display</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/abstract_display.css">
 </head>
 <body>
+	<div id="info_bar"><p>Index</p></div>
 	<div id="message">
 		<?php
 
+			//for ($i=0; $i<200; $i++){
 			for ($i=0; $i<sizeof($objects); $i++){
 
 				$firstName = $objects[$i][0];
@@ -79,17 +83,14 @@
 				// $ctryColor = RGBToHex($color3, $color3, $color3);
 
 				$length = strlen($firstName)  + strlen($name); 
-				$str = $firstName . ' ' . $name . ' ' . implode("\n", $objects[$i][3]);;
+				$str = $firstName . ' ' .
+					   $name . ' ' . 
+					   $country . ' ' . implode("\n", $objects[$i][3]);;
 
 				echo '<div data-color="' . $hexColor .
 						'" data-str="' . $str .
 						'" data-width="' . $length .
-						'" class="info">' . $str .'</div>'.
-
-					 '<div data-color="' . $hexColor .
-					 	'" data-str="' . $country .
-					 	'" data-width="' . strlen($country) . 
-					 	'" class="info">'.$country.'</div>';
+						'" class="info">' . $str .'</div>';
 
 				//-------- years ---------//
 				$years = $objects[$i][3];
